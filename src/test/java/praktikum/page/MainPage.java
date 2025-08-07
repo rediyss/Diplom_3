@@ -1,10 +1,13 @@
-
 package praktikum.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MainPage {
     private final WebDriver driver;
@@ -14,6 +17,7 @@ public class MainPage {
     private final By fillingTab = By.xpath("//span[text()='Начинки']/..");
     private final By loginButton = By.xpath("//button[text()='Войти в аккаунт']");
     private final By accountButton = By.xpath("//p[text()='Личный Кабинет']");
+    private final By placeOrderButton = By.xpath("//button[text()='Оформить заказ']");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -55,5 +59,11 @@ public class MainPage {
 
     public void clickAccountButton() {
         driver.findElement(accountButton).click();
+    }
+
+    public boolean isAccountButtonDisplayed() {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(accountButton));
+        return driver.findElement(accountButton).isDisplayed();
     }
 }
