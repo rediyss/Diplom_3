@@ -9,21 +9,21 @@ import static org.junit.Assert.assertTrue;
 public class ConstructorTabTest extends BaseTest {
 
     @Test
-    public void userCanSwitchToBunsTab() {
+    public void testUserCanSwitchToBunsTab() {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickBunTab();
         assertTrue("Булки не активны", mainPage.isBunTabActive());
     }
 
     @Test
-    public void userCanSwitchToSaucesTab() {
+    public void testUserCanSwitchToSaucesTab() {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickSauceTab();
         assertTrue("Соусы не активны", mainPage.isSauceTabActive());
     }
 
     @Test
-    public void userCanSwitchToFillingsTab() {
+    public void testUserCanSwitchToFillingsTab() {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickFillingTab();
         assertTrue("Начинки не активны", mainPage.isFillingTabActive());
