@@ -1,4 +1,3 @@
-
 package praktikum.page;
 
 import org.openqa.selenium.By;
@@ -6,11 +5,13 @@ import org.openqa.selenium.WebDriver;
 
 public class RegisterPage {
     private final WebDriver driver;
+
     private final By nameField = By.xpath("//input[@name='name']");
     private final By emailField = By.xpath("//input[@name='name']/following::input[1]");
     private final By passwordField = By.xpath("//input[@type='password']");
     private final By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
     private final By errorMessage = By.className("input__error");
+    private final By loginLink = By.xpath("//a[@href='/login']");
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
@@ -25,5 +26,9 @@ public class RegisterPage {
 
     public String getErrorMessage() {
         return driver.findElement(errorMessage).getText();
+    }
+
+    public void clickLoginLink() {
+        driver.findElement(loginLink).click();
     }
 }
