@@ -30,13 +30,11 @@ public class UserSteps {
 
 
     @Step("Удаление пользователя по accessToken")
-    public void deleteUser(String accessToken) {
-        given()
+    public Response deleteUser(String accessToken) {
+        return given()
                 .header("Authorization", accessToken)
                 .when()
-                .delete(BASE + "/api/auth/user")
-                .then()
-                .statusCode(202); // может быть 200 или 202 в зависимости от API
+                .delete(BASE + "/api/auth/user");
     }
 
     @Step("Генерация случайного email для пользователя")

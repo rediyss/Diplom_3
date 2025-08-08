@@ -34,7 +34,7 @@ public class LoginTest extends BaseTest {
     @After
     public void tearDownUser() {
         if (accessToken != null) {
-            userSteps.deleteUser(accessToken);
+            userSteps.deleteUser(accessToken).then().statusCode(202);
         }
     }
 
