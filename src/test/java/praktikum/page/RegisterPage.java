@@ -1,5 +1,6 @@
 package praktikum.page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -7,16 +8,17 @@ public class RegisterPage {
     private final WebDriver driver;
 
     private final By nameField = By.xpath("//input[@name='name']");
-    private final By emailField = By.xpath("//input[@name='name']/following::input[1]");
-    private final By passwordField = By.xpath("//input[@type='password']");
+    private final By emailField = By.xpath("//input[@name='email']");
+    private final By passwordField = By.xpath("//input[@name='Пароль']");
     private final By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
     private final By errorMessage = By.className("input__error");
-    private final By loginLink = By.xpath("//a[@href='/login']");
+    private final By loginLink = By.linkText("Войти");
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
     }
 
+    @Step("Регистрируем пользователя: имя={name}, email={email}")
     public void register(String name, String email, String password) {
         driver.findElement(nameField).sendKeys(name);
         driver.findElement(emailField).sendKeys(email);
@@ -24,10 +26,12 @@ public class RegisterPage {
         driver.findElement(registerButton).click();
     }
 
+    @Step("Получаем текст ошибки при регистрации")
     public String getErrorMessage() {
         return driver.findElement(errorMessage).getText();
     }
 
+    @Step("Кликаем по ссылке 'Войти'")
     public void clickLoginLink() {
         driver.findElement(loginLink).click();
     }
