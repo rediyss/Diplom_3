@@ -1,5 +1,6 @@
 package praktikum.testcases;
 
+import Steps.UserDto;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -25,8 +26,9 @@ public class LoginTest extends BaseTest {
     @Before
     public void setUpUser() {
         email = userSteps.generateRandomEmail();
-        userSteps.registerUser(email, password, "TestUser");
-        accessToken = userSteps.getAccessToken(email, password);
+        UserDto user = new UserDto(email, password, "TestUser");
+        userSteps.registerUser(user);
+        accessToken = userSteps.getAccessToken(user);
     }
 
     @After

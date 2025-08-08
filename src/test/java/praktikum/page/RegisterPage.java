@@ -8,8 +8,8 @@ public class RegisterPage {
     private final WebDriver driver;
 
     private final By nameField = By.xpath("//input[@name='name']");
-    private final By emailField = By.xpath("//input[@name='email']");
-    private final By passwordField = By.xpath("//input[@name='Пароль']");
+    private final By emailField = By.xpath("//input[@name='name']/following::input[1]");
+    private final By passwordField = By.xpath("//input[@type='password']");
     private final By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
     private final By errorMessage = By.className("input__error");
     private final By loginLink = By.linkText("Войти");

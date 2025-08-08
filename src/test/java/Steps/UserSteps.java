@@ -8,25 +8,26 @@ import static praktikum.base.BaseURL.BASE;
 
 public class UserSteps {
 
-    @Step("Регистрация пользователя с email: {email}, именем: {name}")
-    public Response registerUser(String email, String password, String name) {
+    @Step("Регистрация пользователя {user.email}")
+    public Response registerUser(UserDto user) {
         return given()
                 .header("Content-type", "application/json")
-                .body(String.format("{\"email\":\"%s\",\"password\":\"%s\",\"name\":\"%s\"}", email, password, name))
+                .body(user)
                 .when()
                 .post(BASE + "/api/auth/register");
     }
 
-    @Step("Получение accessToken для email: {email}")
-    public String getAccessToken(String email, String password) {
+    @Step("Получение accessToken для пользователя {user.email}")
+    public String getAccessToken(UserDto user) {
         Response response = given()
                 .header("Content-type", "application/json")
-                .body(String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password))
+                .body(user)
                 .when()
                 .post(BASE + "/api/auth/login");
 
         return response.then().extract().path("accessToken");
     }
+
 
     @Step("Удаление пользователя по accessToken")
     public void deleteUser(String accessToken) {
