@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import praktikum.base.BaseTest;
+import praktikum.base.BaseURL;
 import praktikum.page.ForgotPasswordPage;
 import praktikum.page.LoginPage;
 import praktikum.page.MainPage;
@@ -59,7 +60,7 @@ public class LoginTest extends BaseTest {
     @DisplayName("Вход через форму регистрации")
     @Description("Проверка перехода со страницы регистрации по ссылке 'Войти' и успешного логина")
     public void loginFromRegistrationPage() {
-        driver.get("https://stellarburgers.nomoreparties.site/register");
+        driver.get(BaseURL.REGISTER_PAGE);
         new RegisterPage(driver).clickLoginLink();
         new LoginPage(driver).login(email, password);
         assertTrue("Кнопка 'Личный Кабинет' не отображается",
@@ -70,7 +71,7 @@ public class LoginTest extends BaseTest {
     @DisplayName("Вход через форму восстановления пароля")
     @Description("Проверка логина через ссылку 'Войти' на странице восстановления пароля")
     public void loginFromForgotPasswordPage() {
-        driver.get("https://stellarburgers.nomoreparties.site/forgot-password");
+        driver.get(BaseURL.FORGOT_PASSWORD_PAGE);
         new ForgotPasswordPage(driver).clickLoginLink();
         new LoginPage(driver).login(email, password);
         assertTrue("Кнопка 'Личный Кабинет' не отображается",

@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import praktikum.driver.DriverHelper;
+import static praktikum.base.BaseURL.BASE;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class BaseTest {
         DriverHelper driverHelper = new DriverHelper();
         driver = driverHelper.initDriver();
         driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get(BaseURL.BASE);
     }
 
     @After

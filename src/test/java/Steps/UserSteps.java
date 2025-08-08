@@ -1,20 +1,18 @@
 package Steps;
 
-
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
+import static praktikum.base.BaseURL.BASE;
 
 public class UserSteps {
-
-    private final String baseUrl = "https://stellarburgers.nomoreparties.site";
 
     public Response registerUser(String email, String password, String name) {
         return given()
                 .header("Content-type", "application/json")
                 .body(String.format("{\"email\":\"%s\",\"password\":\"%s\",\"name\":\"%s\"}", email, password, name))
                 .when()
-                .post(baseUrl + "/api/auth/register");
+                .post(BASE + "/api/auth/register");
     }
 
     public String getAccessToken(String email, String password) {
@@ -22,7 +20,7 @@ public class UserSteps {
                 .header("Content-type", "application/json")
                 .body(String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password))
                 .when()
-                .post(baseUrl + "/api/auth/login");
+                .post(BASE + "/api/auth/login");
 
         return response.then().extract().path("accessToken");
     }
@@ -31,7 +29,7 @@ public class UserSteps {
         given()
                 .header("Authorization", accessToken)
                 .when()
-                .delete(baseUrl + "/api/auth/user")
+                .delete(BASE + "/api/auth/user")
                 .then()
                 .statusCode(202); // может быть 200 или 202 в зависимости от API
     }
